@@ -1,4 +1,8 @@
+import sys
 from backend_server import app
 
-application = app
-app = app
+try:
+    from a2wsgi import ASGIMiddleware
+    application = ASGIMiddleware(app)
+except Exception:
+    application = app
